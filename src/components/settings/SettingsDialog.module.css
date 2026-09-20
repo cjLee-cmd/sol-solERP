@@ -1,0 +1,331 @@
+/* 와이어프레임 2d — 환경설정 */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(30, 27, 29, 0.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.panel {
+  width: min(680px, 100%);
+  max-height: 90dvh;
+  display: flex;
+  flex-direction: column;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(34px) saturate(180%);
+  -webkit-backdrop-filter: blur(34px) saturate(180%);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  overflow: hidden;
+}
+
+.head {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  flex: none;
+}
+.headTitle {
+  font: 800 14px var(--font-heading);
+  color: var(--color-text);
+}
+.close {
+  width: 20px;
+  height: 20px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.07);
+  font: 500 11px var(--font-body);
+  color: var(--color-neutral-700);
+  cursor: pointer;
+}
+
+.body {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+}
+
+.nav {
+  width: 132px;
+  padding: 6px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: none;
+}
+.navItem {
+  border: 0;
+  background: transparent;
+  text-align: left;
+  padding: 6px 9px;
+  border-radius: 9px;
+  font: 500 11px var(--font-body);
+  color: var(--color-neutral-700);
+  cursor: pointer;
+}
+.navItemActive {
+  font-weight: 600;
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 14px 14px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+}
+
+.sectionHead {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.sectionTitle {
+  font: 800 12.5px var(--font-heading);
+  color: var(--color-text);
+}
+.sectionNote {
+  font: 400 10.5px var(--font-body);
+  color: var(--color-neutral-600);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.6);
+}
+.rowOff {
+  opacity: 0.55;
+}
+
+.badge {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 800 9px var(--font-heading);
+  color: #fff;
+  flex: none;
+}
+
+.names {
+  width: 150px;
+  min-width: 0;
+  flex: none;
+}
+.nameEn {
+  font: 700 11px var(--font-body);
+  color: var(--color-text);
+}
+.nameKo {
+  font: 400 10px var(--font-body);
+  color: var(--color-neutral-600);
+}
+
+.url {
+  flex: 1;
+  min-width: 0;
+  font: 400 10px var(--font-mono);
+  color: var(--color-neutral-600);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mode {
+  font: 500 9.5px var(--font-body);
+  color: var(--color-neutral-600);
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 999px;
+  padding: 2px 7px;
+  flex: none;
+}
+
+/* on/off 토글 */
+.toggle {
+  width: 34px;
+  height: 20px;
+  border: 0;
+  padding: 2px;
+  border-radius: 20px;
+  background: var(--color-neutral-400);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+  flex: none;
+}
+.toggle[aria-pressed='true'] {
+  background: var(--color-accent);
+  justify-content: flex-end;
+}
+.knob {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.rowBtn {
+  border: 0;
+  background: transparent;
+  padding: 2px 4px;
+  font: 500 11px var(--font-body);
+  color: var(--color-neutral-500);
+  cursor: pointer;
+  flex: none;
+}
+.rowBtn:hover:not(:disabled) {
+  color: var(--color-text);
+}
+.rowBtn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.rowBtnDanger:hover:not(:disabled) {
+  color: var(--color-accent);
+}
+
+/* 행 편집 폼 */
+.editRow {
+  padding: 11px 12px 12px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), inset 0 0 0 1px var(--color-accent-300);
+}
+
+.editHead {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 10px;
+}
+.editTitle {
+  font: 800 12px var(--font-heading);
+  color: var(--color-text);
+}
+
+.editUrlRow {
+  display: grid;
+  grid-template-columns: 1fr 96px;
+  gap: 9px;
+  margin-bottom: 11px;
+}
+.editUrlField,
+.editModeField {
+  min-width: 0;
+}
+
+/* 새 프로그램 추가 */
+.addBlock {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  padding-top: 11px;
+}
+.addTitle {
+  font: 800 12px var(--font-heading);
+  color: var(--color-text);
+  margin-bottom: 9px;
+}
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin-bottom: 9px;
+}
+.fieldLabel {
+  display: block;
+  font: 500 10.5px var(--font-body);
+  color: var(--color-neutral-700);
+  margin-bottom: 4px;
+}
+.field {
+  width: 100%;
+  height: 28px;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.09);
+  padding: 0 10px;
+  font: 400 11px var(--font-body);
+  color: var(--color-text);
+}
+.fieldMono {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-wrap: wrap;
+}
+.btnGhost,
+.btnPrimary {
+  padding: 6px 15px;
+  border: 0;
+  border-radius: 20px;
+  font: 600 11px var(--font-body);
+  cursor: pointer;
+  flex: none;
+}
+.btnGhost {
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16);
+  color: var(--color-text);
+}
+.btnPrimary {
+  background: var(--color-accent);
+  box-shadow: 0 2px 6px rgba(142, 43, 65, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.28);
+  color: #fff;
+}
+.btnGhost:disabled,
+.btnPrimary:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.hint {
+  font: 400 10px/1.45 var(--font-body);
+  color: var(--color-neutral-600);
+  flex: 1;
+  min-width: 180px;
+}
+.hintOk {
+  color: var(--color-accent-700);
+  font-weight: 500;
+}
+.hintBad {
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+.placeholder {
+  font: 400 11.5px/1.7 var(--font-body);
+  color: var(--color-neutral-600);
+}

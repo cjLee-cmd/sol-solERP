@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>목 차일드 프로그램</title>
+<style>
+  body { margin:0; min-height:100dvh; display:flex; flex-direction:column; align-items:center;
+         justify-content:center; gap:14px; background:#fff;
+         font:400 14px -apple-system,BlinkMacSystemFont,system-ui,sans-serif; color:#1e1b1d }
+  h1 { font:800 20px system-ui,sans-serif; margin:0 }
+  code { font:400 12px ui-monospace,Menlo,monospace; color:#837e81 }
+  button { padding:8px 16px; border:0; border-radius:20px; background:#8e2b41; color:#fff;
+           font:600 12.5px inherit; cursor:pointer }
+  #state { font:600 12px inherit; color:#8e2b41 }
+</style>
+</head>
+<body>
+  <h1>목 차일드 프로그램</h1>
+  <div>연결 검증용 테스트 픽스처입니다. 제품이 아닙니다.</div>
+  <code id="sid">세션 없음</code>
+  <button id="log">활동 로그 남기기</button>
+  <div id="state"></div>
+
+  <script>
+    // ?noclose=1 — window.close() 가 브라우저에 막히는 상황을 재현해
+    // SDK 의 오버레이 대체 경로를 확인하기 위한 테스트 스위치
+    if (new URLSearchParams(location.search).get('noclose') === '1') {
+      window.close = function () { console.log('[mock] window.close() 차단됨'); };
+    }
+  </script>
+  <script src="/solerp-child.js"></script>
+  <script>
+    document.getElementById('sid').textContent =
+      window.SolERP && window.SolERP.session ? 'session ' + window.SolERP.session : '세션 파라미터 없음';
+
+    document.getElementById('log').addEventListener('click', function () {
+      if (!window.SolERP || !window.SolERP.session) {
+        document.getElementById('state').textContent = '세션이 없어 로그를 남길 수 없습니다';
+        return;
+      }
+      window.SolERP.log('목 차일드에서 작업 1건 처리')
+        .then(function () { document.getElementById('state').textContent = '로그 전송됨'; })
+        .catch(function (e) { document.getElementById('state').textContent = String(e.message || e); });
+    });
+  </script>
+</body>
+</html>
